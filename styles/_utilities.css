@@ -1,0 +1,22 @@
+.title-lg {
+  font-size: 1.625rem;
+  font-weight: bold;
+}
+
+.title-md {
+  font-size: 1rem;
+}
+
+.title-sm {
+  font-size: 0.8125rem;
+}
+
+.text-lg {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.text-base {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
