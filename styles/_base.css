@@ -7,7 +7,6 @@
   --clr-error: #f74646;
 
   /* light theme colors */
-
   --clr-grayish-blue: #697c9a;
   --clr-muted-blue: #4b6a9b;
   --clr-dark-navy: #2b3442;
@@ -18,26 +17,30 @@
   --clr-dark-blue: #1e2a47;
 
   /* theme dependent variables */
-  --bg-main-dark: var(--clr-very-dark-navy);
-  --bg-container-dark: var(--clr-dark-blue);
-  --text-dark: var(--clr-pure-white);
-  --icon-dark: var(--clr-pure-white);
-  --icon-dark-hover: #90a4d4;
+  --bg-main: var(--clr-very-dark-navy);
+  --bg-container: var(--clr-dark-blue);
+  --text-color: var(--clr-pure-white);
+  --icon-color: var(--clr-pure-white);
+  --icon-color-hover: #90a4d4;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    --bg-main-dark: var(--clr-light-blue);
-    --bg-container-dark: var(--clr-pure-white);
-    --text-dark: var(--clr-muted-blue);
-    --icon-dark: var(--clr-grayish-blue);
-    --icon-dark-hover: #222731;
+    --bg-main: var(--clr-light-blue);
+    --bg-container: var(--clr-pure-white);
+    --text-color: var(--clr-muted-blue);
+    --icon-color: var(--clr-grayish-blue);
+    --icon-color-hover: #222731;
+    --heading-color: var(--clr-dark-navy);
   }
 }
 
 @font-face {
   font-family: 'Space Mono';
   src: url('/fonts/SpaceMono-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 *,
@@ -51,16 +54,18 @@
 }
 
 html {
-  background-color: var(--bg-main-dark);
-  color: var(--text-dark);
+  background-color: var(--bg-main);
+  color: var(--text-color);
+  transition: background-color 0.2s, color 0.2s;
 }
 
 html.light-theme {
   background-color: var(--clr-light-blue);
-  --bg-container-dark: var(--clr-pure-white);
-  --text-dark: var(--clr-muted-blue);
-  --icon-dark: var(--clr-grayish-blue);
-  --icon-dark-hover: #222731;
+  --bg-container: var(--clr-pure-white);
+  --text-color: var(--clr-muted-blue);
+  --icon-color: var(--clr-grayish-blue);
+  --icon-color-hover: #222731;
+  --heading-color: var(--clr-dark-navy);
 }
 
 body {
@@ -76,6 +81,15 @@ canvas,
 svg {
   display: block;
   max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 input,
@@ -95,7 +109,19 @@ h6 {
   overflow-wrap: break-word;
 }
 
+h2,
+h3 {
+  color: var(--heading-color);
+}
+
 #root,
 #__next {
   isolation: isolate;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
 }
