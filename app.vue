@@ -1,7 +1,14 @@
 <template>
-  <main id="main">
-    <h1 class="title-xl">The Octocat</h1>
-  </main>
+  <NuxtLayout>
+    <template #header>
+      <Logo />
+      <ThemeSwitch />
+    </template>
+    <template #main>
+      <SearchForm />
+      <Results />
+    </template>
+  </NuxtLayout>
 </template>
 
 <style>
