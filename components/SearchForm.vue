@@ -1,38 +1,17 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useAsyncData } from '#app'
-
-const search = ref('')
-const error = ref(false)
-const errorMessage = ref('')
-
-const handleSubmit = async () => {
-  if (search.value.trim() === '') {
-    error.value = true
-    errorMessage.value = 'Please enter a username'
-    return
-  }
-
-  const { data, error: fetchError } = await useAsyncData(() =>
-    $fetch(`https://api.github.com/users/${search.value}`)
-  )
-
-  if (fetchError.value) {
-    error.value = true
-    errorMessage.value = 'Failed to fetch user data'
-    return
-  }
-
-  console.log(data.value)
-  error.value = false
-  errorMessage.value = ''
-}
+const model = defineModel()
+defineProps<{
+  onSubmit: (e: Event) => void
+  isLoading: boolean
+  errorMessage: string | null
+}>()
 </script>
 
 <template>
   <section id="form">
-    <form @submit.prevent="handleSubmit" class="form-container">
+    <form @submit.prevent="onSubmit" class="form-container">
       <img
+        class="search-icon"
         src="/images/icon-search.svg"
         width="24"
         height="24"
@@ -40,16 +19,16 @@ const handleSubmit = async () => {
       />
       <label class="sr-only" for="username">Search GitHub username</label>
       <input
-        v-model="search"
+        v-model.trim="model"
         class="input"
         type="text"
         id="username"
         placeholder="Search GitHub username..."
+        autocomplete="nickname"
       />
-      <p v-if="false" class="text-error">No results</p>
-      <button class="btn" value="Search">Search</button>
+      <p v-if="errorMessage" class="text-error">{{ errorMessage }}</p>
+      <button :disabled="isLoading" class="btn" value="Search">Search</button>
     </form>
-    <p class="text-error" v-if="error">{{ errorMessage }}</p>
   </section>
 </template>
 
@@ -66,60 +45,72 @@ const handleSubmit = async () => {
   @media (max-width: 40rem) {
     margin-bottom: 16px;
     padding: 7px 7px 7px 16px;
+    gap: 8px;
+  }
+
+  & .search-icon {
+    @media (max-width: 40rem) {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  & .input {
+    width: 100%;
+    padding-block: 10px;
+    flex: 1;
+    border: none;
+    background-color: transparent;
+    font-size: 18px;
+    caret-color: var(--clr-vivid-blue);
+    caret-shape: underscore;
+
+    &:focus {
+      outline: none;
+    }
+
+    @media (max-width: 40rem) {
+      font-size: 0.8125rem;
+    }
+  }
+
+  & .btn {
+    border: none;
+    color: var(--clr-pure-white);
+    border-radius: 10px;
+    padding: 12px 24px;
+    background-color: var(--clr-vivid-blue);
+    font-weight: bold;
+    line-height: 1.65;
+    cursor: pointer;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 0.9;
+    }
+
+    &:active {
+      transform: translate(1px, 1px);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+
+    @media (max-width: 40rem) {
+      font-size: 0.875rem;
+      padding: 12px 16px;
+    }
   }
 }
-.input {
-  width: 100%;
-  padding-block: 10px;
-  flex: 1;
-  border: none;
-  background-color: transparent;
-  font-size: 18px;
-  caret-color: var(--clr-vivid-blue);
-  caret-shape: underscore;
-
-  &:focus {
-    outline: none;
-  }
-
-  @media (max-width: 40rem) {
-    font-size: 1rem;
-  }
-}
-
 .input::placeholder {
-  color: var(--clr-pure-white);
+  color: var(--text-color);
   font-size: 1.125rem;
 }
 
 @media (max-width: 40rem) {
   .input::placeholder {
-    font-size: 1rem;
-  }
-}
-
-.btn {
-  border: none;
-  border-radius: 10px;
-  padding: 12px 24px;
-  background-color: var(--clr-vivid-blue);
-  font-weight: bold;
-  line-height: 1.65;
-  cursor: pointer;
-  transition: opacity 0.2s;
-  /* add pressed button ffect */
-
-  &:hover {
-    opacity: 0.9;
-  }
-
-  &:active {
-    transform: translate(1px, 1px);
-  }
-
-  @media (max-width: 40rem) {
-    font-size: 0.875rem;
-    padding: 12px 16px;
+    font-size: 0.8125rem;
   }
 }
 </style>
