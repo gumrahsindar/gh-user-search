@@ -20,7 +20,7 @@
   margin-inline: auto;
 
   @media (max-width: 40rem) {
-    padding-top: 32px;
+    padding-block: 32px 80px;
   }
 }
 .header {

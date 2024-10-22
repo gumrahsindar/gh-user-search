@@ -59,13 +59,24 @@ html {
   transition: background-color 0.2s, color 0.2s;
 }
 
-html.light-theme {
+html.light {
   background-color: var(--clr-light-blue);
+  --bg-main: var(--clr-light-blue);
   --bg-container: var(--clr-pure-white);
   --text-color: var(--clr-muted-blue);
   --icon-color: var(--clr-grayish-blue);
   --icon-color-hover: #222731;
   --heading-color: var(--clr-dark-navy);
+}
+
+html.dark {
+  background-color: var(--clr-very-dark-navy);
+  --bg-main: var(--clr-very-dark-navy);
+  --bg-container: var(--clr-dark-blue);
+  --text-color: var(--clr-pure-white);
+  --icon-color: var(--clr-pure-white);
+  --icon-color-hover: #90a4d4;
+  --heading-color: var(--clr-pure-white);
 }
 
 body {
