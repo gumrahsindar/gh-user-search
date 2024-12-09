@@ -14,78 +14,14 @@
 - **TypeScript**: For type-safe development.
 
 ## 🌐 Live Demo
-<a href="https://example.com](https://tubular-cassata-5de9ff.netlify.app/)" target="_blank">Live Demo</a>
+<a href="https://tubular-cassata-5de9ff.netlify.app/" target="_blank">Live Demo</a>
 
-##  🌄 Preview
-![Preview](./preview.jpg)
+## 🌟 Lighthouse Score
+<div align="center">
+  <img src="./lighthouse-devfinder.png" alt="Lighthouse Score" width="500">
+</div>
 
-
-Make sure to install dependencies:
-
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## 🌄 Preview
+<div align="center">
+  <img src="./preview.jpg" alt="Preview" width="800">
+</div>
